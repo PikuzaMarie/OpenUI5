@@ -80,7 +80,13 @@
 							<ObjectIdentifier
 								title="{Descripton}"/>
 							<ObjectIdentifier
-								title="{Created}"/>
+								title="{
+									path: 'Created',
+									type: 'sap.ui.model.type.DateTime',
+									formatOptions: {
+										pattern: 'HH:mm dd/MM/yyyy'
+									}
+								}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

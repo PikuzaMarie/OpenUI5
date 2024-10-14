@@ -44,8 +44,23 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					<Column id="DocumentNumber">
+						<Text text="{i18n>worklistTableDocumentNumber}"/>
+					</Column>
+					<Column id="DocumentDate">
+						<Text text="{i18n>worklistTableDocumentDate}"/>
+					</Column>
+					<Column id="PlantText">
+						<Text text="{i18n>worklistTablePlantText}"/>
+					</Column>
+					<Column id="RegionText">
+						<Text text="{i18n>worklistTableRegionText}"/>
+					</Column>
+					<Column id="Descripton">
+						<Text text="{i18n>worklistTableDescription}"/>
+					</Column>
+					<Column id="Created">
+						<Text text="{i18n>worklistTableCreated}"/>
 					</Column>
 				</columns>
 
@@ -55,18 +70,22 @@
 						press="onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{CreatedBy}"/>
+								title="{DocumentNumber}"/>
+							<ObjectIdentifier
+								title="{DocumentDate}"/>
+							<ObjectIdentifier
+								title="{PlantText}"/>
+							<ObjectIdentifier
+								title="{RegionText}"/>
+							<ObjectIdentifier
+								title="{Descripton}"/>
+							<ObjectIdentifier
+								title="{Created}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
 		</semantic:content>
-
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
-
-
 	</semantic:SemanticPage>
 
 </mvc:View>

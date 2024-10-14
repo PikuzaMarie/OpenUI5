@@ -20,8 +20,8 @@
 				items="{
 					path: '/zjblessons_base_Headers',
 					sorter: {
-						path: 'CreatedBy',
-						descending: false
+						path: 'DocumentDate',
+						descending: true
 					}
 				}"
 				noDataText="{worklistView>/tableNoDataText}"

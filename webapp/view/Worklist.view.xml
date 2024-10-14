@@ -38,6 +38,8 @@
 							id="searchField"
 							tooltip="{i18n>worklistSearchTooltip}"
 							search="onSearch"
+							change="onSearchDocNum"
+							liveChange="onLiveSearchDocNum"
 							width="auto">
 						</SearchField>
 					</Toolbar>

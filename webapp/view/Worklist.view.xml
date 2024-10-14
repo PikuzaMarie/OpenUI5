@@ -42,6 +42,14 @@
 							liveChange="onLiveSearchDocNum"
 							width="auto">
 						</SearchField>
+						<SearchField
+							id="searchField2"
+							tooltip="{i18n>worklistSearchTooltip}"
+							search="onSearch"
+							change="onSearchPlantTxt"
+							liveChange="onLiveSearchPlantTxt"
+							width="auto">
+						</SearchField>
 					</Toolbar>
 				</headerToolbar>
 

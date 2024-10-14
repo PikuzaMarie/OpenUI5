@@ -38,6 +38,7 @@
 						<SearchField
 							id="searchField"
 							tooltip="{i18n>worklistSearchTooltip}"
+							placeholder="Document number"
 							search="onSearch"
 							change="onSearchDocNum"
 							liveChange="onLiveSearchDocNum"
@@ -46,6 +47,7 @@
 						<SearchField
 							id="searchField2"
 							tooltip="{i18n>worklistSearchTooltip}"
+							placeholder="Plant text"
 							search="onSearch"
 							change="onSearchPlantTxt"
 							liveChange="onLiveSearchPlantTxt"

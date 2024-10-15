@@ -15,7 +15,7 @@ sap.ui.define([
 
 			onInit : function () {
 				const oViewModel = new JSONModel({
-
+					sCount: '0'
 				});
 
 				this.setModel(oViewModel, "worklistView");
@@ -37,10 +37,23 @@ sap.ui.define([
 					template: this._getTableTemplate(),
 					urlParameters: {
 						$select:'HeaderID,DocumentNumber,DocumentDate,PlantText,RegionText,Description,Created'
+					},
+					events: {
+						dataRequested: (oData) => {
+							this._getTableCounter();
+						}
 					}
 
 				});
 
+			},
+
+			_getTableCounter() {
+				this.getModel().read('/zjblessons_base_Headers/$count', {
+					success: (sCount) => {
+						this.getModel('worklistView').setProperty('/sCount', sCount);
+					}
+				});
 			},
 
 			_getTableTemplate() {

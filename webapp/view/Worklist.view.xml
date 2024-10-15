@@ -1,28 +1,27 @@
 <mvc:View
 	controllerName="zjblessons.Worklist.controller.Worklist"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic">
+	xmlns:mvc="sap.ui.core.mvc">
 
-	<semantic:SemanticPage
-		id="page"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false">
+	<Page
+		showHeader="true">
 
-		<semantic:titleHeading>
-			<Title text="{i18n>worklistTitle}" />
-		</semantic:titleHeading>
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="Worklist"/>
+				</contentLeft>
+			</Bar>
+		</customHeader>
 
-		<semantic:content>
+		<content>
 			<Table
 				id="table"
 				width="auto"
-				noDataText="{worklistView>/tableNoDataText}"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				
 				growing="true"
 				growingThreshold="15"
-				growingScrollToLoad="true"
-				updateFinished="onUpdateFinished">
+				growingScrollToLoad="true">
 
 				<headerToolbar>
 					<Toolbar>
@@ -70,7 +69,7 @@
 					</Column>
 				</columns>
 			</Table>
-		</semantic:content>
-	</semantic:SemanticPage>
+		</content>
+	</Page>
 
 </mvc:View>

@@ -68,7 +68,12 @@
 			},
 			"": {
 				"dataSource": "mainService",
-				"preload": true
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "None",
+					"useBatch": false
+				}
 			}
 		},
 		"routing": {
@@ -104,15 +109,11 @@
 			"targets": {
 				"worklist": {
 					"viewName": "Worklist",
-					"viewId": "worklist",
-					"viewLevel": 1,
-					"title": "{i18n>worklistViewTitle}"
+					"viewId": "worklist"
 				},
 				"object": {
 					"viewName": "Object",
-					"viewId": "object",
-					"viewLevel": 2,
-					"title": "{i18n>objectViewTitle}"
+					"viewId": "object"
 				},
 				"objectNotFound": {
 					"viewName": "ObjectNotFound",

@@ -22,9 +22,6 @@ sap.ui.define([
 
 			},
 
-			/**
-			 * @override
-			 */
 			onBeforeRendering: function() {
 				this._bindTable();
 			},
@@ -81,7 +78,7 @@ sap.ui.define([
 			},
 
 			onLiveSearchDocNum(oEvent) {
-				const sValue = o.Event.getParameter('value');
+				const sValue = oEvent.getParameter('value');
 				this._searchHandlerDocNum(sValue);
 			},
 
@@ -98,7 +95,7 @@ sap.ui.define([
 			},
 
 			onLiveSearchPlantTxt(oEvent) {
-				const sValue = o.Event.getParameter('value');
+				const sValue = oEvent.getParameter('value');
 				this._searchHandlerPlantTxt(sValue);
 			},
 

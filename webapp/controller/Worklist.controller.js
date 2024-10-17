@@ -5,8 +5,17 @@ sap.ui.define([
 		"zjblessons/Worklist/model/formatter",
 		"sap/ui/model/Sorter",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, formatter, Sorter, Filter, FilterOperator) {
+		"sap/ui/model/FilterOperator",
+		"sap/ui/core/Fragment",
+	"sap/base/util/Version"
+	], function (BaseController,
+	JSONModel,
+	formatter,
+	Sorter,
+	Filter,
+	FilterOperator,
+	Fragment,
+	Version) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {
@@ -15,7 +24,11 @@ sap.ui.define([
 
 			onInit : function () {
 				const oViewModel = new JSONModel({
-					sCount: '0'
+					sCount: '0',
+					DocumentNumber: "",
+					PlantText: "",
+					RegionText: "",
+					Description: ""
 				});
 
 				this.setModel(oViewModel, "worklistView");
@@ -117,6 +130,51 @@ sap.ui.define([
 				const oFilter = [sValue && sValue.length > 0 ? new Filter('PlantText', FilterOperator.EQ, sValue) : []];
 
 				oTable.getBinding('items').filter(oFilter);
+			},
+
+			onPressCreate() {
+				this._loadCreateDialog();
+			},
+
+			_loadCreateDialog: async function() {
+				this._oDialog = await Fragment.load({
+					name: 'zjblessons.Worklist.view.fragment.CreateDialog',
+					controller: this,
+					id: 'Dialog'
+				}).then(oDialog => {
+					this.getView().addDependent(oDialog);
+					return oDialog
+				});
+
+				this._oDialog.open();
+			},
+
+			onDialogBeforeOpen(oEvent) {
+				const oDialog = oEvent.getSource();
+				
+				const oParams = {
+					HeaderID: '0',
+					Version: 'A',
+					IntegrationID: null
+				},
+
+				oEntry = this.getModel().createEntry('/zjblessons_base_Headers', {
+					properties: oParams
+				});
+
+				oDialog.setBindingContext(oEntry);
+
+			},
+
+			onPressSave: function() {
+				this.getModel().submitChanges();
+				this._oDialog.close();
+
+			},
+
+			onPressCancel: function() {
+				this.getModel().resetChanges();
+				this._oDialog.close();
 			}
 
 		});

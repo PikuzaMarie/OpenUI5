@@ -26,6 +26,11 @@
 				<headerToolbar>
 					<Toolbar>
 						<Title id="tableHeader" text="({= ${worklistView>/sCount}})"/>
+						<Button
+							icon='sap-icon://add'
+							type="Emphasized"
+							press="onPressCreate"
+						/>
 						<ToolbarSpacer />
 						<SearchField
 							id="searchField"

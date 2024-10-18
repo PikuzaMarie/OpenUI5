@@ -135,6 +135,10 @@ sap.ui.define([
 				});
 			},
 
+			onPressRefresh() {
+				this._bindTable();
+			},
+
 			onSearchDocNum(oEvent) {
 				const sValue = oEvent.getParameter('value');
 				this._searchHandlerDocNum(sValue);

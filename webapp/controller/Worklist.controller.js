@@ -117,7 +117,7 @@ sap.ui.define([
 				MessageBox.confirm("Do you really want to delete this record?", {
 					actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
 					emphasizedAction: MessageBox.Action.OK,
-					onClose: function (sAction) {
+					onClose: (sAction) => {
 						if(sAction === MessageBox.Action.OK) {
 							const oBindingContext = oEvent.getSource().getBindingContext();
 							const sKey = this.getView().getModel().createKey('/zjblessons_base_Headers', {

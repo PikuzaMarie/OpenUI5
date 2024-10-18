@@ -20,6 +20,19 @@
                 </VBox>
                 <VBox
                 >
+                    <Label labelFor="idDocumentDate" text="{i18n>worklistTableDocumentDate}"/>
+                    <DatePicker
+                        value="{
+                            path: 'DocumentDate',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {
+                            pattern: 'yyyy-MM-dd'}
+                        }"
+                        id='idDocumentDate'
+                     />
+                </VBox>
+                <VBox
+                >
                     <Label labelFor="idPlantText" text="{i18n>worklistTablePlantText}"/>
                     <Input 
                         value="{PlantText}" 

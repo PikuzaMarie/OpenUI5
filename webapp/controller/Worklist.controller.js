@@ -7,7 +7,8 @@ sap.ui.define([
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
 		"sap/ui/core/Fragment",
-	"sap/base/util/Version"
+		"sap/base/util/Version",
+		"sap/ui/unified/Calendar"
 	], function (BaseController,
 	JSONModel,
 	formatter,
@@ -15,7 +16,8 @@ sap.ui.define([
 	Filter,
 	FilterOperator,
 	Fragment,
-	Version) {
+	Version,
+	Calendar) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {

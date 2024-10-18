@@ -94,10 +94,27 @@ sap.ui.define([
 						new sap.m.Text({
 							text: '{Created}'
 						}),
+						new sap.m.Button({
+							type: 'Transparent',
+							icon: this.getResourceBundle().getText('iDecline'),
+							press: this.onPressDelete.bind(this)
+
+						})
 					]
 				});
 
 				return oTemplate;
+			},
+
+			onPressDelete(oEvent) {
+				const oBindingContext = oEvent.getSource().getBindingContext();
+
+				const sKey = this.getModel().createKey('/zjblessons_base_Headers', {
+					HeaderID: oBindingContext.getProperty('HeaderID')
+				});
+
+				this.getModel().remove(sKey);
+
 			},
 
 			onSearchDocNum(oEvent) {

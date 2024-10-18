@@ -72,6 +72,9 @@
 					<Column id="Created">
 						<Text text="{i18n>worklistTableCreated}"/>
 					</Column>
+					<Column id="btnDelete" width="3%">
+						<Text text=" "/>
+					</Column>
 				</columns>
 			</Table>
 		</content>

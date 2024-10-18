@@ -8,7 +8,9 @@ sap.ui.define([
 		"sap/ui/model/FilterOperator",
 		"sap/ui/core/Fragment",
 		"sap/base/util/Version",
-		"sap/ui/unified/Calendar"
+		"sap/ui/unified/Calendar",
+		"sap/m/MessageBox",
+		"sap/m/MessageToast"
 	], function (BaseController,
 	JSONModel,
 	formatter,
@@ -17,7 +19,9 @@ sap.ui.define([
 	FilterOperator,
 	Fragment,
 	Version,
-	Calendar) {
+	Calendar,
+	MessageBox,
+	MessageToast) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {
@@ -107,14 +111,28 @@ sap.ui.define([
 			},
 
 			onPressDelete(oEvent) {
-				const oBindingContext = oEvent.getSource().getBindingContext();
-
-				const sKey = this.getModel().createKey('/zjblessons_base_Headers', {
-					HeaderID: oBindingContext.getProperty('HeaderID')
+				MessageBox.confirm("Do you really want to delete this record?", {
+					actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+					emphasizedAction: MessageBox.Action.OK,
+					onClose: function (sAction) {
+						if(sAction === MessageBox.Action.OK) {
+							const oBindingContext = oEvent.getSource().getBindingContext();
+							const sKey = this.getView().getModel().createKey('/zjblessons_base_Headers', {
+								HeaderID: oBindingContext.getProperty('HeaderID')
+							});
+							this.getView().getModel().remove(sKey, {
+								success: () => {
+									MessageToast.show('Deleted successfully');
+								},
+								error: () => {
+									MessageToast.show('Error deleting record');
+								}
+							});
+						} else {
+							MessageToast.show('Deletion cancelled');
+						}
+					}
 				});
-
-				this.getModel().remove(sKey);
-
 			},
 
 			onSearchDocNum(oEvent) {

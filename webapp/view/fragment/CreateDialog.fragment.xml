@@ -5,6 +5,7 @@
     <Dialog
         class="sapUiContentPadding"
         title="Create header"
+        beforeOpen="onDialogBeforeOpen"
     >
         <content>
             <VBox

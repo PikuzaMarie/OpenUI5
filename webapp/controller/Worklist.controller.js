@@ -166,13 +166,13 @@ sap.ui.define([
 
 			},
 
-			onPressSave: function() {
+			onPressSave() {
 				this.getModel().submitChanges();
 				this._oDialog.close();
 
 			},
 
-			onPressCancel: function() {
+			onPressCancel() {
 				this.getModel().resetChanges();
 				this._oDialog.close();
 			}

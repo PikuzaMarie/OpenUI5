@@ -44,6 +44,17 @@
 							liveChange="onLiveSearchPlantTxt"
 							width="auto">
 						</SearchField>
+						<DateRangeSelection
+							id="dateRange"
+							value="{
+								path: 'worklistView>/dateRange',
+								type: 'sap.ui.model.type.DateInterval',
+								formatOptions: {
+									pattern: 'yyyy-MM-dd'
+								}
+							}"
+							change="onDateRangeSearch"
+							width="auto" />
 						<ToolbarSpacer />
 						<Button
 							icon='sap-icon://add'

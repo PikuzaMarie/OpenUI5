@@ -30,6 +30,10 @@ sap.ui.define([
 
 			onInit : function () {
 				const oViewModel = new JSONModel({
+					dateRange: {
+						from: null,
+        				to: null
+					},
 					sCount: '0',
 					DocumentNumber: "",
 					PlantText: "",
@@ -38,7 +42,6 @@ sap.ui.define([
 				});
 
 				this.setModel(oViewModel, "worklistView");
-
 			},
 
 			onBeforeRendering: function() {
@@ -171,6 +174,35 @@ sap.ui.define([
 				const oFilter = [sValue && sValue.length > 0 ? new Filter('PlantText', FilterOperator.EQ, sValue) : []];
 
 				oTable.getBinding('items').filter(oFilter);
+			},
+
+			onDateRangeSearch(oEvent) {
+				const sValue = oEvent.getParameter('value'); // a string with pattern 'yyyy-mm-dd - yyyy-mm-dd'
+
+				const aDates = sValue.split(' – ');
+				
+				const oFromDate = aDates[0] ? new Date(aDates[0]) : null;
+				const oToDate = aDates[1] ? new Date(aDates[1]) : null;
+
+				const oModel = this.getView().getModel("worklistView");
+				const oData = oModel.getData();
+			
+				oData.dateRange.from = oFromDate;
+				oData.dateRange.to = oToDate;
+				oModel.setData(oData);
+			
+				this._searchHandlerDate(oFromDate, oToDate);
+			},		
+
+			_searchHandlerDate(oFromDate, oToDate) {
+				const oTable = this.getView().byId('table');
+				const aFilters = [];
+			
+				if (oFromDate && oToDate) {
+					aFilters.push(new Filter('DocumentDate', FilterOperator.BT, oFromDate, oToDate));
+				}
+			
+				oTable.getBinding('items').filter(aFilters);
 			},
 
 			onPressCreate() {

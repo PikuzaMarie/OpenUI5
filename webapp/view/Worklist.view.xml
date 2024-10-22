@@ -15,6 +15,14 @@
 		</customHeader>
 
 		<content>
+			<IconTabHeader
+				select="onIconTabHeaderSelect"
+			>
+				<items>
+					<IconTabFilter key="All" text="All"/>
+                    <IconTabFilter key="Deactivated" text="Deactivated"/>
+				</items>
+			</IconTabHeader>
 			<Table
 				id="table"
 				width="auto"

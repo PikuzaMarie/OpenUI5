@@ -40,7 +40,8 @@ sap.ui.define([
 					DocumentNumber: "",
 					PlantText: "",
 					RegionText: "",
-					Description: ""
+					Description: "",
+					currentFilter: "All"
 				});
 
 				this.setModel(oViewModel, "worklistView");
@@ -52,15 +53,23 @@ sap.ui.define([
 
 			_bindTable() {
 				const oTable = this.getView().byId('table');
+            	const oModel = this.getView().getModel("worklistView");
+            	const sCurrentFilter = oModel.getProperty("/currentFilter");
+
+				let aFilters = [];
+				if (sCurrentFilter === "Deactivated") {
+					aFilters.push(new Filter("Version", FilterOperator.EQ, "D"));
+				}
 
 				oTable.bindItems({
 					path: '/zjblessons_base_Headers',
 					sorter: [
 						new Sorter('DocumentDate', true)
 					],
+					filters: aFilters,
 					template: this._getTableTemplate(),
 					urlParameters: {
-						$select:'HeaderID,DocumentNumber,DocumentDate,PlantText,RegionText,Description,Created'
+						$select:'Version,HeaderID,DocumentNumber,DocumentDate,PlantText,RegionText,Description,Created'
 					},
 					events: {
 						dataRequested: (oData) => {
@@ -259,6 +268,13 @@ sap.ui.define([
 				this.getRouter().navTo('object', {
 					objectId: sHeaderId
 				});
+			},
+
+			onIconTabHeaderSelect(oEvent) {
+				const sKey = oEvent.getParameter("key");
+				const oModel = this.getView().getModel("worklistView");
+				oModel.setProperty("/currentFilter", sKey);
+				this._bindTable();
 			}
 
 		});

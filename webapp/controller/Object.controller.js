@@ -26,7 +26,8 @@ sap.ui.define([
 						busy : true,
 						delay : 0,
 						isEditMode: false,
-						sSelectedTab: "List"
+						sSelectedTab: "List",
+						isDeletable: false
 					});
 
 				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -90,6 +91,10 @@ sap.ui.define([
 					this.getRouter().getTargets().display("objectNotFound");
 					return;
 				}
+
+				const sVersion = oElementBinding.getBoundContext().getProperty("Version");
+            	oViewModel.setProperty("/isDeletable", sVersion === 'D');
+
 				oViewModel.setProperty("/busy", false);
 			},
 

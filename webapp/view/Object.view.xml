@@ -28,7 +28,7 @@
 						text="Delete"
 						width="auto"
 						press="onDelete"
-						visible="{= !${objectView>/isEditMode}}"
+						visible="{= ${objectView>/isDeletable}}"
 					/>
 					<Button
 						icon="sap-icon://save"

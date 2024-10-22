@@ -129,17 +129,20 @@ sap.ui.define([
 					refreshAfterChange: true
 				});
 			},
-			onDelete() {
+			onDelete(oEvent) {
 				const oModel = this.getView().getModel();
-				const sPath = this.getView().getBindingContext().getPath();
 
 				MessageBox.confirm("Do you really want to delete this record?", {
 					actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
 					emphasizedAction: MessageBox.Action.OK,
 					onClose: (sAction) => {
 						if (sAction === MessageBox.Action.OK) {
-							oViewModel.setProperty("/busy", true);
-							oModel.remove(sPath, {
+							const oBindingContext = oEvent.getSource().getBindingContext();
+							const sKey = this.getView().getModel().createKey('/zjblessons_base_Headers', {
+								HeaderID: oBindingContext.getProperty('HeaderID')
+							});
+							oModel.setProperty("/busy", true);
+							oModel.remove(sKey, {
 								success: () => {
 									MessageToast.show("Record deleted successfully");
 									this.getRouter().navTo("worklist");

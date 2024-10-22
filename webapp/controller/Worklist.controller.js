@@ -112,6 +112,10 @@ sap.ui.define([
 						new sap.m.Text({
 							text: '{Created}'
 						}),
+						new sap.m.Switch({
+							state: "{= ${Version} === 'D' }",
+							change: this.onChangeSwitch.bind(this)
+						}),
 						new sap.m.Button({
 							type: 'Transparent',
 							icon: this.getResourceBundle().getText('iDecline'),
@@ -153,6 +157,44 @@ sap.ui.define([
 					});
 				} else {
 					MessageToast.show('Only records with Version D can be deleted');
+				}
+			},
+
+			onChangeSwitch(oEvent) {
+				const bState = oEvent.getParameter("state");
+				const oBindingContext = oEvent.getSource().getBindingContext();
+				const sKey = this.getView().getModel().createKey('/zjblessons_base_Headers', {
+					HeaderID: oBindingContext.getProperty('HeaderID')
+				});
+			
+				const sNewVersion = bState ? 'D' : 'A'; 
+			
+				this.getView().getModel().update(sKey, {
+					Version: sNewVersion
+				}, {
+					success: () => {
+						MessageToast.show('Record updated successfully');
+						this._refreshTableRow(oBindingContext);
+					},
+					error: () => {
+						MessageToast.show('Error updating record');
+					}
+				});
+
+			},
+
+			_refreshTableRow(oBindingContext) {
+				const oTable = this.getView().getModel().byId('table');
+				const oBinding = oTable.getBinding("items");
+				const sPath = oBindingContext.getPath();
+
+				if (oBinding) {
+					const aContexts = oBinding.getContexts();
+					const iIndex = aContexts.findIndex(context => context.getPath() === sPath);
+
+					if (iIndex !== -1) {
+						oTable.getItems()[iIndex].getBindingContext().getModel().refresh(true);
+					}
 				}
 			},
 

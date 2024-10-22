@@ -125,28 +125,35 @@ sap.ui.define([
 			},
 
 			onPressDelete(oEvent) {
-				MessageBox.confirm("Do you really want to delete this record?", {
-					actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
-					emphasizedAction: MessageBox.Action.OK,
-					onClose: (sAction) => {
-						if(sAction === MessageBox.Action.OK) {
-							const oBindingContext = oEvent.getSource().getBindingContext();
-							const sKey = this.getView().getModel().createKey('/zjblessons_base_Headers', {
-								HeaderID: oBindingContext.getProperty('HeaderID')
-							});
-							this.getView().getModel().remove(sKey, {
-								success: () => {
-									MessageToast.show('Deleted successfully');
-								},
-								error: () => {
-									MessageToast.show('Error deleting record');
-								}
-							});
-						} else {
-							MessageToast.show('Deletion cancelled');
+				const oBindingContext = oEvent.getSource().getBindingContext();
+				const sVersion = oBindingContext.getProperty('Version');
+
+				if(sVersion === 'D') {
+					MessageBox.confirm("Do you really want to delete this record?", {
+						actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+						emphasizedAction: MessageBox.Action.OK,
+						onClose: (sAction) => {
+							if(sAction === MessageBox.Action.OK) {
+								const oBindingContext = oEvent.getSource().getBindingContext();
+								const sKey = this.getView().getModel().createKey('/zjblessons_base_Headers', {
+									HeaderID: oBindingContext.getProperty('HeaderID')
+								});
+								this.getView().getModel().remove(sKey, {
+									success: () => {
+										MessageToast.show('Deleted successfully');
+									},
+									error: () => {
+										MessageToast.show('Error deleting record');
+									}
+								});
+							} else {
+								MessageToast.show('Deletion cancelled');
+							}
 						}
-					}
-				});
+					});
+				} else {
+					MessageToast.show('Only records with Version D can be deleted');
+				}
 			},
 
 			onPressRefresh() {

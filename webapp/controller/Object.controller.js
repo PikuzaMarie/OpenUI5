@@ -121,6 +121,20 @@ sap.ui.define([
 					path: sObjectPath,
 					refreshAfterChange: true
 				});
+			},
+			onDelete() {
+				const oModel = this.getView().getModel();
+				const sPath = this.getView().getBindingContext().getPath();
+
+				oModel.remove(sPath, {
+					success: function() {
+						MessageToast.show("Record deleted successfully");
+						this.getRouter().navTo("worklist");
+					}.bind(this),
+					error: function() {
+						MessageToast.show("Error deleting record");
+					}
+				});
 			}			
 
 		});

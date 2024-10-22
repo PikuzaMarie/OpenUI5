@@ -99,8 +99,30 @@ sap.ui.define([
 				const oViewModel = this.getView().getModel("objectView");
 				oViewModel.setProperty("/isEditMode", false);
 				this.getModel().resetChanges();
+			},
+			onSave() {
+				const oViewModel = this.getView().getModel("objectView");
+				const oModel = this.getView().getModel();
+
+				oModel.submitChanges({
+					success: function() {
+						MessageToast.show("Changes were saved");
+						oViewModel.setProperty("/isEditMode", false);
+						this._refreshObject();
+					}.bind(this),
+					error: function() {
+						MessageToast.show("Error saving changes");
+					}
+				});
+			},
+			_refreshObject() {
+				const sObjectPath = this.getView().getElementBinding().getPath();
+				this.getView().bindElement({
+					path: sObjectPath,
+					refreshAfterChange: true
+				});
 			}			
-			
+
 		});
 
 	}

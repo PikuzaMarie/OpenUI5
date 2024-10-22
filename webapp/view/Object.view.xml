@@ -6,6 +6,47 @@
 	<Page
 		showFooter="false"
 	>
+		<customHeader>
+			<Bar
+				design="Auto"
+			>
+				<contentLeft>
+					<Title
+						text="{DocumentNumber}"
+					/>
+				</contentLeft>
+				<contentRight>
+					<Button
+						icon="sap-icon://edit"
+						text="Edit"
+						width="auto"
+						press="onEdit"
+						visible="{= !${objectView>/isEditMode}}"
+					/>
+					<Button
+						icon="sap-icon://delete"
+						text="Delete"
+						width="auto"
+						press="onDelete"
+						visible="{= !${objectView>/isEditMode}}"
+					/>
+					<Button
+						icon="sap-icon://save"
+						text="Save"
+						width="auto"
+						press="onSave"
+						visible="{objectView>/isEditMode}"
+					/>
+					<Button
+						icon="sap-icon://sys-cancel"
+						text="Cancel"
+						width="auto"
+						press="onCancel"
+						visible="{objectView>/isEditMode}"
+					/>
+				</contentRight>
+			</Bar>
+		</customHeader>
 		<content>
 			<IconTabBar
 				expandable="false"

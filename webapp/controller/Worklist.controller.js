@@ -10,7 +10,8 @@ sap.ui.define([
 		"sap/base/util/Version",
 		"sap/ui/unified/Calendar",
 		"sap/m/MessageBox",
-		"sap/m/MessageToast"
+		"sap/m/MessageToast",
+	"sap/f/cards/Header"
 	], function (BaseController,
 	JSONModel,
 	formatter,
@@ -21,7 +22,8 @@ sap.ui.define([
 	Version,
 	Calendar,
 	MessageBox,
-	MessageToast) {
+	MessageToast,
+	Header) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {
@@ -248,6 +250,15 @@ sap.ui.define([
 			onPressCancel() {
 				this.getModel().resetChanges();
 				this._oDialog.close();
+			},
+
+			onItemSelect(oEvent) {
+				const oItem = oEvent.getParameter('listItem');
+				const sHeaderId = oItem.getBindingContext().getProperty('HeaderID');
+
+				this.getRouter().navTo('object', {
+					objectId: sHeaderId
+				});
 			}
 
 		});

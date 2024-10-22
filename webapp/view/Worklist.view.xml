@@ -18,6 +18,8 @@
 			<Table
 				id="table"
 				width="auto"
+
+    			itemPress="onItemSelect"
 				
 				growing="true"
 				growingThreshold="15"

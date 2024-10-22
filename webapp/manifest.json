@@ -99,7 +99,7 @@
 					]
 				},
 				{
-					"pattern": "zjblessons_base_Headers/{objectId}",
+					"pattern": "Object/{objectId}",
 					"name": "object",
 					"target": [
 						"object"

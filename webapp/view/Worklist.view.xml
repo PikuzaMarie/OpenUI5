@@ -23,7 +23,7 @@
                     <IconTabFilter key="Deactivated" text="Deactivated"/>
 				</items>
 			</IconTabHeader>
-			<Table
+			<Table 
 				id="table"
 				width="auto"
 
@@ -97,6 +97,9 @@
 					</Column>
 					<Column id="Created">
 						<Text text="{i18n>worklistTableCreated}"/>
+					</Column>
+					<Column id="switchActivation" width="5%">
+						<Text text=" "/>
 					</Column>
 					<Column id="btnDelete" width="3%">
 						<Text text=" "/>

@@ -4,13 +4,15 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/routing/History",
 		"zjblessons/Worklist/model/formatter",
-		"sap/m/MessageToast"
+		"sap/m/MessageToast",
+		"sap/m/MessageBox"
 	], function (
 		BaseController,
 	JSONModel,
 	History,
 	formatter,
-	MessageToast
+	MessageToast,
+	MessageBox
 	) {
 		"use strict";
 
@@ -126,15 +128,25 @@ sap.ui.define([
 				const oModel = this.getView().getModel();
 				const sPath = this.getView().getBindingContext().getPath();
 
-				oModel.remove(sPath, {
-					success: function() {
-						MessageToast.show("Record deleted successfully");
-						this.getRouter().navTo("worklist");
-					}.bind(this),
-					error: function() {
-						MessageToast.show("Error deleting record");
+				MessageBox.confirm("Do you really want to delete this record?", {
+					actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+					emphasizedAction: MessageBox.Action.OK,
+					onClose: (sAction) => {
+						if (sAction === MessageBox.Action.OK) {
+							oViewModel.setProperty("/busy", true);
+							oModel.remove(sPath, {
+								success: () => {
+									MessageToast.show("Record deleted successfully");
+									this.getRouter().navTo("worklist");
+								},
+								error: () => {
+									MessageToast.show("Error deleting record");
+								}
+							});
+						}
 					}
 				});
+				
 			}			
 
 		});

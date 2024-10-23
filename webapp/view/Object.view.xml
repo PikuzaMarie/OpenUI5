@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:core="sap.ui.core"
 	controllerName="zjblessons.Worklist.controller.Object"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
@@ -60,9 +60,11 @@
 						icon="sap-icon://list"
 						key="List"
 						text="List"
+						visible="{= !${objectView>/isEditMode}}"
 					>
 						<List
 							backgroundDesign="Solid"
+							visible="{= !${objectView>/isEditMode} }"
 						>
 							<items>
 								 <ObjectListItem>
@@ -75,11 +77,29 @@
                             </ObjectListItem>
 							</items>
 						</List>
+						<VBox visible="{= ${objectView>/isEditMode} }">
+							<Label text="Document Number" />
+							<Input value="{DocumentNumber}" placeholder="Enter document number" width="50%" />
+
+							<Label text="Description" />
+							<Input value="{Description}" placeholder="Enter description" width="50%" />
+
+							<Label text="Region" />
+							<Select selectedKey="{RegionText}" width="50%">
+								<core:Item key="{RegionId}" text="{RegionName}" />
+							</Select>
+							
+							<Label text="Plant" />
+							<ComboBox selectedKey="{PlantText}" placeholder="Select plant" width="50%">
+								<core:Item key="{PlantId}" text="{PlantName}" />
+							</ComboBox>
+						</VBox>
 					</IconTabFilter>
 					<IconTabFilter 
 						icon="sap-icon://form"
 						key="Form"
 						text="Form"
+						visible="{= !${objectView>/isEditMode}}"
 					>
 					</IconTabFilter>
 				</items>

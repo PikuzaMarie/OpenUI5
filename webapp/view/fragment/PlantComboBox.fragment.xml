@@ -2,9 +2,15 @@
 	xmlns="sap.m"
 	xmlns:c="sap.ui.core"
 >
-    <ComboBox id="comboBoxPlant" selectedKey="{PlantText}" placeholder="Select plant" width="50%">
+    <ComboBox id="comboBoxPlant" 
+              selectedKey="{PlantText}" 
+              placeholder="Select plant" 
+              width="50%"
+              items="{
+                path: '/zjblessons_base_Plants'
+              }">
         <items>
-            <c:Item key="{PlantId}" text="{PlantName}" />
+            <c:Item key="{PlantId}" text="{PlantText}" />
         </items>
     </ComboBox>
 </c:FragmentDefinition>

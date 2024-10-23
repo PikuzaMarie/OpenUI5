@@ -10,9 +10,12 @@
 	<Select 
 		id="selectRegion"
 		selectedKey="{RegionText}"
+		items="{
+			path: '/zjblessons_base_Regions'
+		}"
 	>
 		<items>
-			<c:Item key="{RegionId}" text="{RegionName}" />
+			<c:Item key="{RegionId}" text="{RegionText}" />
 		</items>
     </Select>
 </mvc:View>

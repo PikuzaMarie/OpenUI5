@@ -85,14 +85,10 @@
 							<Input value="{Description}" placeholder="Enter description" width="50%" />
 
 							<Label text="Region" />
-							<Select selectedKey="{RegionText}" width="50%">
-								<core:Item key="{RegionId}" text="{RegionName}" />
-							</Select>
+							<mvc:XMLView viewName="zjblessons.Worklist.view.fragment.template.RegionSelect" />
 							
 							<Label text="Plant" />
-							<ComboBox selectedKey="{PlantText}" placeholder="Select plant" width="50%">
-								<core:Item key="{PlantId}" text="{PlantName}" />
-							</ComboBox>
+							<core:Fragment fragmentName="zjblessons.Worklist.view.fragment.PlantComboBox" type="XML"></core:Fragment>
 						</VBox>
 					</IconTabFilter>
 					<IconTabFilter 

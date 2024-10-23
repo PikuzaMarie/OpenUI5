@@ -1,0 +1,10 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <ComboBox id="comboBoxPlant" selectedKey="{PlantText}" placeholder="Select plant" width="50%">
+        <items>
+            <c:Item key="{PlantId}" text="{PlantName}" />
+        </items>
+    </ComboBox>
+</c:FragmentDefinition>

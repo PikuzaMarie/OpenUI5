@@ -12,6 +12,11 @@
 				design="Auto"
 			>
 				<contentLeft>
+					<Button
+						icon="sap-icon://nav-back"
+						width="auto"
+						press="onPressNavBack"
+					/>
 					<Title
 						text="{DocumentNumber}"
 					/>
@@ -82,14 +87,14 @@
 							<Label text="Document Number" />
 							<Input value="{DocumentNumber}" placeholder="Enter document number" width="50%" />
 
-							<Label text="Description" />
-							<Input value="{Description}" placeholder="Enter description" width="50%" />
-
 							<Label text="Region" />
 							<mvc:XMLView viewName="zjblessons.Worklist.view.fragment.template.RegionSelect" />
 							
 							<Label text="Plant" />
 							<core:Fragment fragmentName="zjblessons.Worklist.view.fragment.PlantComboBox" type="XML"></core:Fragment>
+
+							<Label text="Description" />
+							<TextArea value="{Description}" rows="3" maxLength="256" placeholder="Enter description" width="50%" />
 						</VBox>
 					</IconTabFilter>
 					<IconTabFilter 

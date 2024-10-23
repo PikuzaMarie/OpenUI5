@@ -110,6 +110,7 @@ sap.ui.define([
 			onSave() {
 				const oViewModel = this.getView().getModel("objectView");
 				const oModel = this.getView().getModel();
+				const oView = this.getView();
 
 				oModel.submitChanges({
 					success: function() {
@@ -155,6 +156,9 @@ sap.ui.define([
 					}
 				});
 				
+			},
+			onPressNavBack() {
+				this.getRouter().navTo("worklist");
 			}			
 
 		});

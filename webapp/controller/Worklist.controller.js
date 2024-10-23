@@ -93,6 +93,7 @@ sap.ui.define([
 				const oTemplate = new sap.m.ColumnListItem({
 					type: 'Navigation',
 					navigated: true,
+					highlight: "{= ${Version} === 'A' ? 'Success' : ${Version} === 'D' ? 'Error' : 'None'}",
 					cells: [
 						new sap.m.Text({
 							text: '{DocumentNumber}'

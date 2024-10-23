@@ -61,6 +61,20 @@
 						key="List"
 						text="List"
 					>
+						<List
+							backgroundDesign="Solid"
+						>
+							<items>
+								 <ObjectListItem>
+                                <attributes>
+									<ObjectAttribute title="Document number" text="{DocumentNumber}" />
+									<ObjectAttribute title="Region" text="{RegionText}" />
+                                    <ObjectAttribute title="Plant" text="{PlantText}" />
+                                    <ObjectAttribute title="Description" text="{Description}" />
+                                </attributes>
+                            </ObjectListItem>
+							</items>
+						</List>
 					</IconTabFilter>
 					<IconTabFilter 
 						icon="sap-icon://form"

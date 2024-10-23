@@ -1,7 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core"
 	controllerName="zjblessons.Worklist.controller.Object"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form">
 
 	<Page
 		showFooter="false"
@@ -97,6 +98,114 @@
 						text="Form"
 						visible="{= !${objectView>/isEditMode}}"
 					>
+						<VBox
+						>
+							<f:Form
+								id="idForm"
+								editable="true"
+							>
+								<f:title>
+									<core:Title text="Address"/>
+								</f:title>
+								<f:layout>
+									<f:ResponsiveGridLayout
+										adjustLabelSpan="false"
+										columnsXL="2"
+										columnsL="2"
+										columnsM="1"
+										emptySpanL="4"
+										emptySpanM="0"
+										emptySpanS="0"
+										emptySpanXL="0"
+										labelSpanL="3"
+										labelSpanM="4"
+										labelSpanS="12"
+										labelSpanXL="4"
+										singleContainerFullSize="false"
+									>
+									</f:ResponsiveGridLayout>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer
+										title="Main"
+									>
+										<f:formElements>
+											<f:FormElement
+												label="DocumentNumber"
+											>
+												<Text text="{DocumentNumber}"/>
+											</f:FormElement>
+											<f:FormElement
+												label="Plant Text"
+											>
+												<Text text="{PlantText}"/>
+											</f:FormElement>
+											<f:FormElement
+												label="Region Text"
+											>
+												<Text text="{RegionText}"/>
+											</f:FormElement>
+											<f:FormElement
+												label="Description"
+											>
+												<Text text="{Description}"/>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer
+										title="Details"
+									>
+										<f:formElements>
+											<f:FormElement
+												label="Created"
+											>
+												<f:fields>
+													<Text
+														text="{ 
+															path: 'Created',
+															type: 'sap.ui.model.type.Date',
+															formatOptions: {
+																style: 'short'
+															}
+														}"
+													/>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement
+												label="Created by full name"
+											>
+												<f:fields>
+													<Text
+														text="{CreatedByFullName}"
+													/>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement
+												label="Modified"
+											>
+												<f:fields>
+													<Text
+														text="{
+															path: 'Modified',
+															formatter: '.formatter.formatMediumDate'
+														}"
+													/>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement
+												label="Modified by full name"
+											>
+												<f:fields>
+													<Text
+														text="{ModifiedByFullName}"
+													/>
+												</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</VBox>
 					</IconTabFilter>
 				</items>
 			</IconTabBar>
